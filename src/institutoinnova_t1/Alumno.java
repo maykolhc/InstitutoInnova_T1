@@ -173,7 +173,7 @@ public class Alumno {
 
         return "\nNombre: " + nombre
                 + "\nTipo de documento: " + tipoDocumento
-                + "\nNúmero de documento: " + numeroDocumento
+                + "\nNumero de documento: " + numeroDocumento
                 + "\nNivel socioeconómico: " + nivelSocioeconomico
                 + "\nTipo de beca: " + tipoBeca
                 + "\nTarifa base: S/ " + tarifaBase
