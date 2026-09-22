@@ -16,16 +16,16 @@ public class Alumno {
     private char nivelSocioeconomico;
     private String tipoBeca;
 
-    public Alumno() {
-    }
 
-    public Alumno(String nombre, String tipoDocumento, String numeroDocumento, char nivelSocioeconomico, String tipoBeca) {
-        this.nombre = nombre;
-        this.tipoDocumento = tipoDocumento;
-        this.numeroDocumento = numeroDocumento;
-        this.nivelSocioeconomico = nivelSocioeconomico;
-        this.tipoBeca = tipoBeca;
-    }
+   public Alumno(String nombre, String tipoDocumento, String numeroDocumento,
+              char nivelSocioeconomico, String tipoBeca) {
+
+    setNombre(nombre);
+    setTipoDocumento(tipoDocumento);
+    setNumeroDocumento(numeroDocumento);
+    setNivelSocioeconomico(nivelSocioeconomico);
+    setTipoBeca(tipoBeca);
+}
 
     public String getNombre() {
         return nombre;
