@@ -69,6 +69,7 @@ public class ControladorAlumno {
             // Agregar a la lista
             alumnos.add(alumno);
 
+            
             System.out.println(
                     "\nAlumno registrado correctamente.");
 
