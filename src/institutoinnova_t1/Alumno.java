@@ -31,35 +31,87 @@ public class Alumno {
         return nombre;
     }
 
+    //nombre s y g
     public void setNombre(String nombre) {
+         if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                    "El nombre no puede estar vacio.");
+        }
         this.nombre = nombre;
     }
 
+    //tipo doc
     public String getTipoDocumento() {
         return tipoDocumento;
     }
 
     public void setTipoDocumento(String tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
+        if (tipoDocumento == null) {
+            throw new IllegalArgumentException(
+                    "El tipo de documento es obligatorio");
+        }
+
+        if (!tipoDocumento.equalsIgnoreCase("DNI")
+                && !tipoDocumento.equalsIgnoreCase("RESIDENCIA")) {
+
+            throw new IllegalArgumentException(
+                    "El tipo de documento debe ser DNI o RESIDENCIA.");
+        }
+
+        this.tipoDocumento = tipoDocumento.toUpperCase();
     }
 
+    //identidad
     public String getNumeroDocumento() {
         return numeroDocumento;
     }
 
     public void setNumeroDocumento(String numeroDocumento) {
+         if (numeroDocumento == null ||
+                !numeroDocumento.matches("\\d+")) {
+
+            throw new IllegalArgumentException(
+                    "El documento debe contener solamente numero");
+        }
+
+        if (tipoDocumento.equals("DNI")
+                && numeroDocumento.length() != 8) {
+
+            throw new IllegalArgumentException(
+                    "El DNI debe tener 8 dijitos");
+        }
+
+        if (tipoDocumento.equals("RESIDENCIA")
+                && numeroDocumento.length() != 11) {
+
+            throw new IllegalArgumentException(
+                    "La Residencia Temporal debe tener exactamente 11 digitos");
+        }
+
         this.numeroDocumento = numeroDocumento;
     }
 
+    //socieco...
     public char getNivelSocioeconomico() {
         return nivelSocioeconomico;
     }
 
     public void setNivelSocioeconomico(char nivelSocioeconomico) {
+        nivelSocioeconomico =
+                Character.toUpperCase(nivelSocioeconomico);
+
+        if (nivelSocioeconomico != 'A'
+                && nivelSocioeconomico != 'B'
+                && nivelSocioeconomico != 'C') {
+
+            throw new IllegalArgumentException(
+                    "El nivel socioeconómico debe ser A, B o C.");
+        }
+
         this.nivelSocioeconomico = nivelSocioeconomico;
     }
 
-    
+    //tipobeca
     public String getTipoBeca() {
         return tipoBeca;
     }
@@ -67,7 +119,7 @@ public class Alumno {
     public void setTipoBeca(String tipoBeca) {
         if (tipoBeca == null) {
             throw new IllegalArgumentException(
-                    "La beca es obligatoria.");
+                    "La beca es obligatoria");
         }
 
         if (!tipoBeca.equalsIgnoreCase("NINGUNA")
