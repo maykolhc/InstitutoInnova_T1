@@ -59,13 +59,72 @@ public class Alumno {
         this.nivelSocioeconomico = nivelSocioeconomico;
     }
 
+    
     public String getTipoBeca() {
         return tipoBeca;
     }
 
     public void setTipoBeca(String tipoBeca) {
-        this.tipoBeca = tipoBeca;
+        if (tipoBeca == null) {
+            throw new IllegalArgumentException(
+                    "La beca es obligatoria.");
+        }
+
+        if (!tipoBeca.equalsIgnoreCase("NINGUNA")
+                && !tipoBeca.equalsIgnoreCase("PARCIAL")
+                && !tipoBeca.equalsIgnoreCase("TOTAL")) {
+
+            throw new IllegalArgumentException(
+                    "La beca debe ser NINGUNA, PARCIAL o TOTAL.");
+        }
+        this.tipoBeca = tipoBeca.toUpperCase();
     }
     
+    //Metodo para pension
+    public double calcularPension(double tarifaBase) {
+
+        if (tipoBeca.equals("PARCIAL")) {
+            return tarifaBase * 0.50;
+        }
+
+        if (tipoBeca.equals("TOTAL")) {
+            return 0;
+        }
+
+        return tarifaBase;
+    }
     
+    // Método para obtener la tarifa 
+    public double obtenerTarifaBase() {
+
+        switch (nivelSocioeconomico) {
+
+            case 'A':
+                return 500.00;
+
+            case 'B':
+                return 350.00;
+
+            case 'C':
+                return 250.00;
+
+            default:
+                return 0;
+        }
+    }
+    
+    @Override
+    public String toString() {
+
+        double tarifaBase = obtenerTarifaBase();
+        double pensionFinal = calcularPension(tarifaBase);
+
+        return "\nNombre: " + nombre
+                + "\nTipo de documento: " + tipoDocumento
+                + "\nNúmero de documento: " + numeroDocumento
+                + "\nNivel socioeconómico: " + nivelSocioeconomico
+                + "\nTipo de beca: " + tipoBeca
+                + "\nTarifa base: S/ " + tarifaBase
+                + "\nPensión final: S/ " + pensionFinal;
+    }
 }
