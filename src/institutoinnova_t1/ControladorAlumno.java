@@ -55,6 +55,7 @@ public class ControladorAlumno {
             System.out.print(
                     "Tipo de beca (NINGUNA/PARCIAL/TOTAL): ");
 
+            
             String tipoBeca = scanner.nextLine();
 
             // Crear objeto Alumno
